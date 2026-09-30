@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Teacher's Day, Ma'am! 🌻</title>
+  <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght@0,400;0,600;1,400&family=Dosis:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #fef5e7;
+      font-family: 'Dosis', sans-serif;
+      color: #4a3b32;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Floating Stickers Outside Panel */
+    .classroom-sticker {
+      position: absolute;
+      font-size: 2.8rem;
+      filter: drop-shadow(0 6px 12px rgba(0,0,0,0.1));
+      z-index: 5;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .sticker-1 { top: 8%; left: 10%; animation: floatSticker1 4s ease-in-out infinite; }
+    .sticker-2 { top: 15%; right: 10%; animation: floatSticker2 5s ease-in-out infinite; }
+    .sticker-3 { bottom: 12%; left: 8%; animation: floatSticker3 4.5s ease-in-out infinite; }
+    .sticker-4 { bottom: 15%; right: 8%; animation: floatSticker1 5.5s ease-in-out infinite; }
+    .sticker-5 { top: 46%; left: 3%; animation: floatSticker2 6s ease-in-out infinite; }
+    .sticker-6 { top: 46%; right: 3%; animation: floatSticker3 5s ease-in-out infinite; }
+
+    @keyframes floatSticker1 {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(6deg); }
+    }
+
+    @keyframes floatSticker2 {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(10px) rotate(-6deg); }
+    }
+
+    @keyframes floatSticker3 {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(-4deg); }
+    }
+
+    /* Main Card Frame */
+    .card-frame {
+      position: relative;
+      width: 100%;
+      max-width: 440px;
+      height: 94vh;
+      background: #ffffff;
+      border-radius: 30px;
+      box-shadow: 0 15px 35px rgba(184, 134, 11, 0.12);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 26px 20px;
+      border: 6px dashed #ffd166;
+      z-index: 10;
+      overflow: hidden;
+    }
+
+    /* FRONT PAGE (ENVELOPE SCREEN) */
+    #front-page {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #fffbf0 0%, #fef5e7 100%);
+      border-radius: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 30px;
+      z-index: 25;
+      cursor: pointer;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .envelope-box {
+      position: relative;
+      background: #ffffff;
+      width: 160px;
+      height: 110px;
+      border-radius: 12px;
+      border: 3px solid #f4a261;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 25px rgba(244, 162, 97, 0.2);
+      animation: bounceEnvelope 2s infinite ease-in-out;
+      margin-bottom: 25px;
+    }
+
+    .envelope-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 77px solid transparent;
+      border-right: 77px solid transparent;
+      border-top: 55px solid #f4a261;
+      transform-origin: top;
+    }
+
+    .seal-sticker {
+      position: absolute;
+      font-size: 2.2rem;
+      z-index: 2;
+      animation: pulseSeal 1.5s infinite alternate;
+    }
+
+    .front-title {
+      font-family: 'Shantell Sans', cursive;
+      color: #e07a5f;
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .front-subtitle {
+      font-size: 1rem;
+      color: #81b29a;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 30px;
+    }
+
+    .tap-instruction {
+      background: #f4a261;
+      color: #ffffff;
+      font-family: 'Shantell Sans', cursive;
+      font-size: 1.1rem;
+      padding: 12px 26px;
+      border-radius: 50px;
+      box-shadow: 0 6px 15px rgba(244, 162, 97, 0.4);
+      animation: pulseBtn 1.8s infinite;
+    }
+
+    @keyframes bounceEnvelope {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    @keyframes pulseSeal {
+      from { transform: scale(1); }
+      to { transform: scale(1.15); }
+    }
+
+    /* MAIN PAGE CONTENT */
+    .header-box {
+      text-align: center;
+      z-index: 2;
+    }
+
+    .header-box h1 {
+      font-family: 'Shantell Sans', cursive;
+      color: #e07a5f;
+      font-size: 1.7rem;
+      font-weight: 600;
+    }
+
+    .header-box p {
+      font-size: 0.9rem;
+      color: #81b29a;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-top: 2px;
+    }
+
+    /* Giant Flower Section */
+    .flower-stage {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      flex-grow: 1;
+      margin: 10px 0;
+    }
+
+    .giant-flower {
+      width: 310px;
+      height: 310px;
+      animation: popBloom 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.3) forwards, floatFlower 3.5s ease-in-out 1.2s infinite;
+      transform: scale(0);
+      filter: drop-shadow(0 10px 20px rgba(224, 122, 95, 0.2));
+      cursor: pointer;
+    }
+
+    @keyframes popBloom {
+      0% { transform: scale(0) rotate(-45deg); opacity: 0; }
+      70% { transform: scale(1.08) rotate(5deg); opacity: 1; }
+      100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    }
+
+    @keyframes floatFlower {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(2deg); }
+    }
+
+    /* Open Letter Button */
+    .open-letter-btn {
+      background: #f4a261;
+      color: #ffffff;
+      font-family: 'Shantell Sans', cursive;
+      font-size: 1.15rem;
+      font-weight: 600;
+      padding: 13px 26px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(244, 162, 97, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s ease;
+      z-index: 3;
+      animation: pulseBtn 2s infinite;
+    }
+
+    .open-letter-btn:hover {
+      background: #e76f51;
+      transform: scale(1.05);
+    }
+
+    @keyframes pulseBtn {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+    }
+
+    /* Popup Letter Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(74, 59, 50, 0.5);
+      backdrop-filter: blur(5px);
+      z-index: 100;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .letter-card {
+      background: #fffdf9;
+      width: 100%;
+      max-width: 400px;
+      border-radius: 24px;
+      padding: 28px 22px;
+      position: relative;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      border: 3px solid #e07a5f;
+      animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 18px;
+      background: #fef5e7;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-weight: bold;
+      color: #e07a5f;
+      cursor: pointer;
+    }
+
+    .letter-body {
+      font-family: 'Shantell Sans', cursive;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #3d3a37;
+      max-height: 62vh;
+      overflow-y: auto;
+      padding-right: 5px;
+    }
+
+    .letter-body p {
+      margin-bottom: 14px;
+    }
+
+    /* Confetti Particle */
+    .confetti {
+      position: absolute;
+      pointer-events: none;
+      animation: fall linear forwards;
+      z-index: 5;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(105vh) rotate(720deg); opacity: 0; }
+    }
+
+    /* Mobile Sticker adjustments */
+    @media (max-width: 600px) {
+      .sticker-1 { top: 3%; left: 3%; font-size: 2rem; }
+      .sticker-2 { top: 3%; right: 3%; font-size: 2rem; }
+      .sticker-3 { bottom: 3%; left: 3%; font-size: 2rem; }
+      .sticker-4 { bottom: 3%; right: 3%; font-size: 2rem; }
+      .sticker-5, .sticker-6 { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Classroom Stickers Outside Panel -->
+  <div class="classroom-sticker sticker-1">📚</div>
+  <div class="classroom-sticker sticker-2">📌</div>
+  <div class="classroom-sticker sticker-3">☕</div>
+  <div class="classroom-sticker sticker-4">🎨</div>
+  <div class="classroom-sticker sticker-5">💻</div>
+  <div class="classroom-sticker sticker-6">⭐</div>
+
+  <div class="card-frame">
+
+    <!-- FRONT PAGE: Envelope & Notification -->
+    <div id="front-page" onclick="openFrontPage()">
+      <div class="envelope-box">
+        <div class="seal-sticker">💌</div>
+      </div>
+      <div class="front-title">You've got mail! 📬</div>
+      <div class="front-subtitle">A special delivery just for you</div>
+      <div class="tap-instruction">✨ Tap to open ✨</div>
+    </div>
+    
+    <!-- MAIN PAGE CONTENT -->
+    <div class="header-box">
+      <h1>Happy Teacher’s Day, Ma’am! 💐</h1>
+      <p>To my "chikadora" teacher</p>
+    </div>
+
+    <!-- Giant Interactive Flower SVG -->
+    <div class="flower-stage">
+      <svg class="giant-flower" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg" onclick="burstConfetti()">
+        <!-- Petals -->
+        <circle cx="150" cy="80" r="45" fill="#ffb703" opacity="0.9"/>
+        <circle cx="150" cy="220" r="45" fill="#ffb703" opacity="0.9"/>
+        <circle cx="80" cy="150" r="45" fill="#ffb703" opacity="0.9"/>
+        <circle cx="220" cy="150" r="45" fill="#ffb703" opacity="0.9"/>
+        <circle cx="100" cy="100" r="45" fill="#fb8500" opacity="0.85"/>
+        <circle cx="200" cy="100" r="45" fill="#fb8500" opacity="0.85"/>
+        <circle cx="100" cy="200" r="45" fill="#fb8500" opacity="0.85"/>
+        <circle cx="200" cy="200" r="45" fill="#fb8500" opacity="0.85"/>
+        
+        <!-- Center Face / Core -->
+        <circle cx="150" cy="150" r="50" fill="#3d405b"/>
+        <circle cx="135" cy="140" r="6" fill="#fff"/>
+        <circle cx="165" cy="140" r="6" fill="#fff"/>
+        <circle cx="137" cy="140" r="2.5" fill="#1d3557"/>
+        <circle cx="167" cy="140" r="2.5" fill="#1d3557"/>
+        <path d="M 135 160 Q 150 175 165 160" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="123" cy="152" r="7" fill="#ffb703" opacity="0.6"/>
+        <circle cx="177" cy="152" r="7" fill="#ffb703" opacity="0.6"/>
+      </svg>
+    </div>
+
+    <!-- Button to Open Letter -->
+    <button class="open-letter-btn" onclick="openModal()">
+      💌 Read My Letter
+    </button>
+
+  </div>
+
+  <!-- Letter Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="letter-card">
+      <button class="close-modal" onclick="closeModal()">✕</button>
+      
+      <div class="letter-body">
+        <p><strong>Dearest Teacher, Maryjane Palwa,</strong></p>
+
+        <p>Happy Teacher’s Day, Ma’am!💐</p>
+        
+        <p>Honestly, I don’t even know where to start because if I start telling you how much I appreciate you, basin dle ta mahuman.😂</p>
+
+        <p>I just want to say thank you, not only for being my teacher before, but also for being one of those people who gave me advice, corrected me when I needed it, and somehow managed to make me feel like I was talking to a teacher, a bestie, and always a ka marites all at the same time.😂</p>
+
+        <p>Honestly, sauna basin dili kaayo nako ma-appreciate tanan nimong advice kay estudyante ug wala pay experience sa kinaboohi char hahaha. Kanunay ko makadungog nimo og advice unya akong huna-huna kay, “Okay Ma’am, noted.” 😭 Pero karon, as time goes by, makaingon ko nga, “Ay hala, tinuod diay tong giingon ni Ma'am.” HAHAHA.</p>
+
+        <p>Mao bitaw na-realize nako nga naa gyud diay mga teachers nga even after you leave their class, naa gihapon ilang mga words nga magpabilin sa imong huna-huna. Ikaw na siguro na, Ma’am.😂</p>
+
+        <p>Thank you for always reminding me to do better, to keep going, and not to give up easily. Thank you pud sa patience nimo, especially sa mga times nga basin ako mismo nakahatag ug sakit sa ulo HAHAHA.😭</p>
+
+        <p>As your former student, I also want to give you one tiny piece of advice in return: please remember to take care of yourself too. You’re always busy helping, teaching, reminding, and guiding other people, but you also deserve time to rest, laugh, enjoy life, and do the things that make you happy.</p>
+
+        <p>Pero bitaw, always take care of yourself too. You spend so much time helping and guiding other people, so you deserve to rest and be happy pud. Don't forget nga you're doing a good job, even on those days nga murag kapoy na kaayo.❤️</p>
+
+        <p>And if ever naa kay students nga makapa-“Lord, tabang” 😭 just remember nga naa pud kay former student nga proud and thankful nga nakaagi sa imong class.❤️</p>
+
+        <p>Thank you for everything, Ma’am. For the lessons, advice, jokes, reminders, and even the little conversations nga basin simple ra para nimo pero memorable diay para naho.</p>
+
+        <p>Happy Teacher’s Day, Ma’am! 🌷❤️</p>
+
+        <p>Stay pretty, stay funny, stay strong, and please stay healthy kay daghan pa kag students nga kinahanglan nimo i-survive. HAHAHAHA 😂😭</p>
+
+        <p>And yes, former student na ko, pero kung naa gihapon kay advice para nako...</p>
+
+        <p>Sige lang Ma’am, makig-chika gihapon ko. 😂❤️</p>
+
+        <p style="text-align: right; margin-top: 15px;">
+          <strong>Happy Teacher’s Day again! Love lots, Ma’am!<br>— your "marites" student, Jessa 🥹💐❤️</strong>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const frontPage = document.getElementById('front-page');
+    const modalOverlay = document.getElementById('modalOverlay');
+
+    function openFrontPage() {
+      frontPage.style.opacity = '0';
+      frontPage.style.transform = 'scale(1.05)';
+      setTimeout(() => {
+        frontPage.style.display = 'none';
+      }, 500);
+      burstConfetti();
+    }
+
+    function openModal() {
+      modalOverlay.style.display = 'flex';
+      burstConfetti();
+    }
+
+    function closeModal() {
+      modalOverlay.style.display = 'none';
+    }
+
+    function burstConfetti() {
+      for (let i = 0; i < 30; i++) {
+        const c = document.createElement('div');
+        c.classList.add('confetti');
+        c.innerText = ['🌻', '⭐', '💛', '✨', '💐'][Math.floor(Math.random() * 5)];
+        c.style.left = Math.random() * 100 + 'vw';
+        c.style.fontSize = (Math.random() * 12 + 14) + 'px';
+        c.style.animationDuration = (Math.random() * 1.5 + 1.5) + 's';
+        document.body.appendChild(c);
+
+        setTimeout(() => c.remove(), 3000);
+      }
+    }
+  </script>
+</body>
+</html>
